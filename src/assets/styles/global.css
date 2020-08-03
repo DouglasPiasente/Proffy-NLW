@@ -1,4 +1,6 @@
 :root {
+    font-size: 60%;
+
     --color-background: #F0F0F7;
     --color-primary-lighter: #9871F5;
     --color-primary-light: #916BEA;
@@ -17,8 +19,6 @@
     --color-button-text: #FFFFFF;
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
-  
-    font-size: 60%;
   }
 
   * {
@@ -28,7 +28,7 @@
   }
 
   html, body, #root {
-      height: 100vh;
+      height: 100vh ;
   }
 
   body {
@@ -43,6 +43,7 @@
 
   body, input, button, textarea {
       font: 500 1.6rem Poppins;
+      color: var(--color-text-base);
   }
 
   .container {
@@ -50,7 +51,7 @@
       max-width: 700px;
   }
 
-  @media (min-width: 700px) {
+  @media only screen and (min-width: 700px) {
       :root {
           font-size: 62.5%;
       }
