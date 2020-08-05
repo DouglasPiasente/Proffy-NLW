@@ -1,38 +1,57 @@
 import React from "react";
 import whatsappIcon from "../../assets/images/icons/whatsapp.svg";
 import './styles.css'
+import api from "../../services/api";
 
-function TeacherItem() {
+export interface Teacher {
+  
+    avatar: string;
+    bio: string;
+    cost: number;
+    id: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+  
+}
+
+interface TeacherItemProps {
+  teacher: Teacher
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  function createNewConnection() {
+    api.post('connections', {
+      user_id: teacher.id,
+    })
+  }
+
   return (
   <article className="teacher-item">
     <header>
       <img
-        src="https://avatars2.githubusercontent.com/u/66640847?s=460&u=4d133d176bba5a4515467352e7b3abbed298f216&v=4"
-        alt="Douglas Piasente"
+        src={teacher.avatar}
+        alt={teacher.name}
       />
       <div>
-        <strong>Douglas Piasente</strong>
-        <span>Inglês</span>
+        <strong>{teacher.name}</strong>
+        <span>{teacher.subject}</span>
       </div>
     </header>
 
     <p>
-      Professor de inglês que usa as melhores tecnologias disponíveis
-      <br />
-      <br />
-      Apaixonado por ensinar um novo idioma a iniciantes de todas as idades e
-      responsável pale criação dessa aplicação de professores
+    {teacher.bio}
     </p>
 
     <footer>
       <p>
         Preço/hora
-        <strong>R$ 50,00</strong>
+        <strong>R$ {teacher.cost}</strong>
       </p>
-      <button type="button">
+      <a target="_blank" onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`}>
         <img src={whatsappIcon} alt="Whatsapp" />
         Entrar em contato
-      </button>
+      </a>
     </footer>
   </article>
   )
